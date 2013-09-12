@@ -11,7 +11,7 @@
 module.exports = function (grunt) {
   var compass = require('./lib/compass').init(grunt);
 
-  function compile(args, cb) {
+  function compile(args, options, cb) {
     var child = grunt.util.spawn({
       cmd: args.shift(),
       args: args
@@ -36,6 +36,10 @@ module.exports = function (grunt) {
         } else {
           success = false;
         }
+      }
+
+      if (code === 0 && options.treatWarningsAsErrors && result.stderr.length) {
+        success = false;
       }
 
       cb(success);
@@ -71,7 +75,7 @@ module.exports = function (grunt) {
         args.push('--config', path);
       }
 
-      compile(args, function (success) {
+      compile(args, options, function (success) {
         bannerCallback();
         cb(success);
       });

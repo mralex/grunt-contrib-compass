@@ -317,6 +317,11 @@ Type: `Boolean`
 
 Remove generated files and the sass cache. Runs `compass clean` instead of `compass compile`.
 
+#### treatWarningsAsErrors
+
+Type: `Boolean`
+
+Causes the build to fail for any Compass warnings.
 
 [config]: http://compass-style.org/help/tutorials/configuration-reference/
 

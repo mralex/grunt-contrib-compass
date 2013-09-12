@@ -167,7 +167,8 @@ exports.init = function (grunt) {
       'clean',
       'bundleExec',
       'basePath',
-      'specify'
+      'specify',
+      'treatWarningsAsErrors'
     ]));
 
     // Compass doesn't have a long flag for this option:
