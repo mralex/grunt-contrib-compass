@@ -30,8 +30,12 @@ module.exports = function (grunt) {
       // on stderr when it has nothing to compile.
       // https://github.com/chriseppstein/compass/issues/993
       // Don't fail the task in this situation.
-      if (code === 1 && /Nothing to compile/g.test(result.stderr)) {
-        success = true;
+      if (code === 1) {
+        if (/Nothing to compile/g.test(result.stderr)) {
+          success = true;
+        } else {
+          success = false;
+        }
       }
 
       cb(success);
@@ -67,9 +71,9 @@ module.exports = function (grunt) {
         args.push('--config', path);
       }
 
-      compile(args, function () {
+      compile(args, function (success) {
         bannerCallback();
-        cb();
+        cb(success);
       });
     });
   });
