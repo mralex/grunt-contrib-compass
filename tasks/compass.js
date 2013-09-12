@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         }
       }
 
-      if (code === 0 && options.treatWarningsAsErrors && result.stderr.length) {
+      if (code === 0 && options.treatWarningsAsErrors && /WARNING on line/g.test(result.stderr)) {
         success = false;
       }
 
